@@ -28,10 +28,6 @@ public class User {
        return password.get();
     }
 
-    public void setPassword(String password) {
-        this.password.set(password);
-    }
-
     public StringProperty passwordProperty() {
         return password;
     }
