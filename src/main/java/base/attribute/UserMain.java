@@ -1,4 +1,4 @@
-package attribute;
+package base.attribute;
 
 
 import javafx.beans.InvalidationListener;

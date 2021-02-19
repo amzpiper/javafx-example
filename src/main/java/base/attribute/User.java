@@ -1,4 +1,4 @@
-package attribute;
+package base.attribute;
 
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;

@@ -1,4 +1,4 @@
-package form;
+package base.form;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

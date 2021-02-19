@@ -1,4 +1,4 @@
-package form;
+package base.form;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -6,7 +6,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
 

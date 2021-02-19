@@ -1,16 +1,11 @@
-package attribute;
+package base.attribute;
 
 import javafx.application.Application;
 import javafx.beans.property.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Reflection;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**

@@ -1,4 +1,4 @@
-package myscene;
+package base.myscene;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
