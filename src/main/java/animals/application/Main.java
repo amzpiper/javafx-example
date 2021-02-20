@@ -65,7 +65,7 @@ public class Main extends Application {
 
 			Scene scene = new Scene(pane,400,400);
 			scene.setFill(null);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
 
 			primaryStage.setScene(scene);
 			//设置窗体的初始位置
