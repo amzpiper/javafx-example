@@ -74,7 +74,7 @@ public class Main extends Application {
 			//窗口总显示在最前
 			primaryStage.setAlwaysOnTop(true);
 			//修改任务栏图标
-			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("icon.png")));
+			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
 			//下句隐藏任务栏图标，但javafx的stage.initStyle(Style)只能有一个起效，只好作罢
 			//stage.initStyle(StageStyle.UTILITY);
 			//背景透明
