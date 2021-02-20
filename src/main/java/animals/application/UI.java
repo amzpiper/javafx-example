@@ -131,7 +131,7 @@ public class UI implements Runnable {
 			popMenu.add(itemHide);
 			popMenu.add(itemExit);
 			//设置托盘图标
-			image = ImageIO.read(getClass().getResourceAsStream("icon.png"));
+			image = ImageIO.read(getClass().getResourceAsStream("/icon.png"));
 			TrayIcon trayIcon = new TrayIcon(image, "桌面宠物", popMenu);
 	        trayIcon.setToolTip("桌面宠物");
 	        trayIcon.setImageAutoSize(true);//自动调整图片大小。这步很重要，不然显示的是空白
