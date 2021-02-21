@@ -1,4 +1,4 @@
-package animals.application;
+package com.application;
 
 import java.awt.AWTException;
 import java.awt.CheckboxMenuItem;
@@ -189,36 +189,36 @@ public class UI implements Runnable {
 		Label bubble = new Label(message);
 		//设置气泡的宽度。如果没有这句，就会根据内容多少来自适应宽度
 		bubble.setPrefWidth(100);
-        bubble.setWrapText(true);//�Զ�����
-        bubble.setStyle("-fx-background-color: DarkTurquoise; -fx-background-radius: 8px;");
-        bubble.setPadding(new Insets(7));//��ǩ���ڱ߾�Ŀ��
-        bubble.setFont(new javafx.scene.text.Font(14));
-        Polygon triangle = new Polygon(
-        		0.0, 0.0,
-        		8.0, 10.0,
-        		16.0, 0.0);//�ֱ��������������������X��Y
-        triangle.setFill(Color.DARKTURQUOISE);
-        messageBox = new VBox();
-//      VBox.setMargin(triangle, new Insets(0, 50, 0, 0));//���������ε�λ�ã�Ĭ�Ͼ���
-        messageBox.getChildren().addAll(bubble, triangle);
-        messageBox.setAlignment(Pos.BOTTOM_CENTER);
-      	messageBox.setStyle("-fx-background:transparent;");
-        //��������ڸ�������λ��
-        messageBox.setLayoutX(0);
-      	messageBox.setLayoutY(0);
-      	messageBox.setVisible(true);
-      	//�������ݵ���ʾʱ��
-      	new Timeline(new KeyFrame(
-			     Duration.seconds(8),
-			     ae ->{messageBox.setVisible(false);}))
-			    .play();
+		bubble.setWrapText(true);//自动换行
+		bubble.setStyle("-fx-background-color: DarkTurquoise; -fx-background-radius: 8px;");
+		bubble.setPadding(new Insets(7));//标签的内边距的宽度
+		bubble.setFont(new javafx.scene.text.Font(14));
+		Polygon triangle = new Polygon(
+				0.0, 0.0,
+				8.0, 10.0,
+				16.0, 0.0);//分别设置三角形三个顶点的X和Y
+		triangle.setFill(Color.DARKTURQUOISE);
+		messageBox = new VBox();
+//      VBox.setMargin(triangle, new Insets(0, 50, 0, 0));//设置三角形的位置，默认居中
+		messageBox.getChildren().addAll(bubble, triangle);
+		messageBox.setAlignment(Pos.BOTTOM_CENTER);
+		messageBox.setStyle("-fx-background:transparent;");
+		//设置相对于父容器的位置
+		messageBox.setLayoutX(0);
+		messageBox.setLayoutY(0);
+		messageBox.setVisible(true);
+		//设置气泡的显示时间
+		new Timeline(new KeyFrame(
+				Duration.seconds(8),
+				ae ->{messageBox.setVisible(false);}))
+				.play();
 	}
 
-//�ö��߳���ʵ�� �������ʱ����ִ�С��Զ����ߡ����������֡���������Ĺ���
+	//用多线程来实现 经过随机时间间隔执行“自动行走”“自娱自乐”“碎碎念”的功能
 	public void run() {
 		while(true) {
 			Random rand = new Random();
-			//��������Զ��¼����������ü��Ϊ9~24�롣Ҫע�����ʱ���������˶������ŵ�ʱ��
+			//随机发生自动事件，以下设置间隔为9~24秒。要注意这个时间间隔包含了动画播放的时间
 			long time = (rand.nextInt(15)+10)*1000;
 			System.out.println("Waiting time:"+time);
 			if(itemWalkable.getState() & listen.gifID == 0) {
@@ -228,74 +228,74 @@ public class UI implements Runnable {
 				play();
 			}
 			else if(itemSay.getState() & listen.gifID == 0) {
-				//���ѡ��Ҫ˵�Ļ�����ΪĿǰֻ������������Կ�������Ŀ�����
+				//随机选择要说的话。因为目前只有两个宠物，所以可以用三目运算符
 				String str = (petID == 0) ? lxhStrings[rand.nextInt(5)]:biuStrings[rand.nextInt(4)];
 				Platform.runLater(() ->setMsg(str));
 			}
 			try {
 				Thread.sleep(time);
-			    } catch (InterruptedException e) {
-			     e.printStackTrace();
-			    }
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	/*
-	 * ִ��"������"�Ĺ��ܡ����ڳ����Ϸ���ʾ�Ի�����
-	 * ��Ĭ�Ͽ����ǿ��ǵ��û����ܲ��뱻����
+	 * 执行"碎碎念"的功能——在宠物上方显示对话气泡
+	 * 不默认开启是考虑到用户可能不想被打扰
 	 */
 	public void setMsg(String msg) {
 
 		Label lbl = (Label) messageBox.getChildren().get(0);
-      	lbl.setText(msg);
-      	messageBox.setVisible(true);
-      	//�������ݵ���ʾʱ��
-      	new Timeline(new KeyFrame(
-			     Duration.seconds(4),
-			     ae ->{messageBox.setVisible(false);}))
-			    .play();
+		lbl.setText(msg);
+		messageBox.setVisible(true);
+		//设置气泡的显示时间
+		new Timeline(new KeyFrame(
+				Duration.seconds(4),
+				ae ->{messageBox.setVisible(false);}))
+				.play();
 	}
 
 	/*
-	 * ִ��"�����߶�"�Ĺ��ܡ�����ˮƽ�������߶�
-	 * ��Ĭ�Ͽ����ǿ��ǵ��û�����ֻ����ﰲ������
+	 * 执行"自行走动"的功能——在水平方向上走动
+	 * 不默认开启是考虑到用户可能只想宠物安静呆着
 	 */
 	void walk(){
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-		x = primaryStage.getX();//stage�����Ե����
-		double maxx = screenBounds.getMaxX();//��ȡ��Ļ�Ĵ�С
-		double width = imageView.getBoundsInLocal().getWidth();//��ȡimageView�Ŀ�ȣ�Ҳ��ʹ��.getMaxX();
+		x = primaryStage.getX();//stage的左边缘坐标
+		double maxx = screenBounds.getMaxX();//获取屏幕的大小
+		double width = imageView.getBoundsInLocal().getWidth();//获取imageView的宽度，也可使用.getMaxX();
 		Random rand = new Random();
-		double speed=10;//ÿ���ƶ��ľ���
-		//�����Ҫ������Ļ��Ե��ͣ��
-        if(x+speed+width >= maxx | x-speed<=0)
-        	return;
-        //��������ƶ���ʱ�䣬��λ΢��ms
+		double speed=10;//每次移动的距离
+		//如果将要到达屏幕边缘就停下
+		if(x+speed+width >= maxx | x-speed<=0)
+			return;
+		//随机决定移动的时间，单位微秒ms
 		long time = (rand.nextInt(4)+3)*1000;
 		System.out.println("Walking time:"+time);
-		int direID = rand.nextInt(2);//�����������0Ϊ��1Ϊ��
-		//�л�����Ӧ���������ͼ
+		int direID = rand.nextInt(2);//随机决定方向，0为左，1为右
+		//切换至对应方向的行走图
 		Image newimage;
 		if(petID == 0)
-			newimage = new Image(this.getClass().getResourceAsStream("/lxh/��С��w"+direID+".gif"));
+			newimage = new Image(this.getClass().getResourceAsStream("/lxh/罗小黑w"+direID+".gif"));
 		else {
 			newimage = new Image(this.getClass().getResourceAsStream("/biu/biuw"+direID+".gif"));
 		}
 		imageView.setImage(newimage);
-		//�ƶ�
+		//移动
 		Move move = new Move(time, imageView, direID, primaryStage, listen);
 		thread = new Thread(move);
 		thread.start();
 	}
 	/*
-	 * ִ��"��������"�Ĺ��ܡ�������ʱ���������
-	 * �����Ͳ����ܲ�λ���������ƣ�Ҳ�����ó����Եô���
-	 * ��Ĭ�Ͽ����ǿ��ǵ��û�����ֻ����ﰲ������
+	 * 执行"自娱自乐"的功能——空闲时随机做动作
+	 * 这样就不用受部位数量的限制，也不会让宠物显得呆板
+	 * 不默认开启是考虑到用户可能只想宠物安静呆着
 	 */
 	void play() {
 		Random rand = new Random();
 		int gifID;
 		double time = 4;
-		//gifID�Ǹ���ͼƬ�ļ�������;δ�����ͼƬ�����趨�Ķ���������ȷ����
+		//gifID是根据图片文件夹中用途未定义的图片和已设定的动作个数来确定的
 		if(petID == 0) {
 			gifID = rand.nextInt(7)+5;
 		}

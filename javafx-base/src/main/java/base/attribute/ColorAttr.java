@@ -1,11 +1,15 @@
 package base.attribute;
 
 import javafx.application.Application;
-import javafx.beans.property.*;
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.*;
-import javafx.scene.shape.*;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**

@@ -5,19 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>groupId</groupId>
-    <artifactId>javafx-example</artifactId>
+    <artifactId>javafx-base</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-    <packaging>pom</packaging>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <modules>
-        <module>pet</module>
-        <module>javafx-base</module>
-    </modules>
 
     <build>
         <plugins>
