@@ -177,7 +177,7 @@ public class UI implements Runnable {
 			time = 3;
 		}
 		//要用Platform.runLater，不然会报错Not on FX application thread;
-		Platform.runLater(() ->setMsg("�ټ�~"));
+		Platform.runLater(() ->setMsg("再见~"));
 		//动画结束后执行退出
 		new Timeline(new KeyFrame(
 			     Duration.seconds(time),
