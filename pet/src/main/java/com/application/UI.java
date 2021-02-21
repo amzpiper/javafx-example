@@ -69,7 +69,7 @@ public class UI implements Runnable {
 		try {
 			// 为托盘添加一个右键弹出菜单
 			PopupMenu popMenu = new PopupMenu();
-			popMenu.setFont(new Font("微软雅黑", Font.PLAIN,18));
+			popMenu.setFont(new Font("微软雅黑", Font.PLAIN,12));
 
 			itemSwitch = new MenuItem("切换宠物");
 			itemSwitch.addActionListener(e -> switchPet());
